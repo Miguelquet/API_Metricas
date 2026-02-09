@@ -1,4 +1,4 @@
-## Telemetry API (Portfolio Project)
+## Telemetry API (Portfolio Project) V1.0
 
 A production-style (but simple) telemetry collector:
 - Ingest **metrics** (numeric) and **events** (text + severity)
