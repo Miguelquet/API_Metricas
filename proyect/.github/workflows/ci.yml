@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: telemetry
+          POSTGRES_USER: telemetry
+          POSTGRES_PASSWORD: telemetry
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U telemetry -d telemetry"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=20
+
+    env:
+      DATABASE_URL: postgresql+psycopg://telemetry:telemetry@localhost:5432/telemetry
+      READ_API_KEY: read_key_ci
+      WRITE_API_KEY: write_key_ci
+      RETENTION_DAYS: 30
+      LOG_LEVEL: INFO
+      MAX_TAGS: 20
+      MAX_TAG_KEY_LEN: 50
+      MAX_TAG_VALUE_LEN: 200
+      MAX_PAGE_SIZE: 500
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest -q
+
