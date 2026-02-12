@@ -9,9 +9,9 @@ API de telemetría backend con enfoque de producto real:
 - Retención de datos (script).
 - Tests automáticos.
  
-+## Estado del proyecto
+## Estado del proyecto
  
-+✅ **Fase 1 completada:** migraciones con Alembic (sin `create_all` como estrategia principal de evolución de esquema).
+**Fase 1 completada:** migraciones con Alembic (sin `create_all` como estrategia principal de evolución de esquema).
  
 ## Arquitectura (actual)
 
