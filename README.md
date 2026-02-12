@@ -32,6 +32,4 @@ Con Docker Compose, el servicio API ejecuta `alembic upgrade head` antes de leva
 
 
 > Nota de compatibilidad: si ya existían tablas `metrics/events` creadas antes de Alembic, el arranque en Docker ejecuta un bootstrap que hace `alembic stamp head` automáticamente para evitar errores de tipo "relation already exists". En caso de que siga ocurriendo el error introduzca en la carpeta `*/proyecto/` el comando `docker compose down -v`y posteriormente vuelva a subir el contenedor de docker con `docker compose up --build` 
- 
-EOF
-)
+
